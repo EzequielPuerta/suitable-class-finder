@@ -1,5 +1,13 @@
 # SuitableClassFinder
 
+[![PyPI](https://img.shields.io/pypi/v/suitable-class-finder?color=blue&label=PyPI%20Version&logo=python&logoColor=white)](https://pypi.org/project/suitable-class-finder/)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/EzequielPuerta/suitable-class-finder?label=Latest%20Release&display_name=tag&logo=github&logoColor=white)](https://github.com/EzequielPuerta/suitable-class-finder/releases/latest)
+![GitHub License](https://img.shields.io/github/license/EzequielPuerta/suitable-class-finder?label=License&logo=github&logoColor=white)
+[![Package Status](https://img.shields.io/pypi/status/suitable-class-finder.svg?label=PyPI%20Status&logo=python&logoColor=white)](https://pypi.org/project/suitable-class-finder/)
+[![CircleCI](https://img.shields.io/circleci/build/gh/EzequielPuerta/suitable-class-finder/main?label=CircleCI%20Build&logo=circleci&logoColor=white)](https://circleci.com/gh/EzequielPuerta/suitable-class-finder)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/EzequielPuerta/suitable-class-finder/main?label=CodeFactor&logo=codefactor&logoColor=white)](https://www.codefactor.io/repository/github/ezequielpuerta/suitable-class-finder)
+[![Codecov](https://img.shields.io/codecov/c/gh/EzequielPuerta/suitable-class-finder?label=Codecov&logo=codecov&logoColor=white)](https://codecov.io/gh/EzequielPuerta/suitable-class-finder)
+
 Given the hierarchy of an abstract class, it detects the appropriate concrete subclass (deterministically) that satisfies certain attributes obtained as a parameter. Useful for implementing the [Strategy design pattern](https://en.wikipedia.org/wiki/Strategy_pattern).
 
 > [!NOTE]
