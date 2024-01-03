@@ -1,0 +1,89 @@
+[tool.poetry]
+name = "suitable-class-finder"
+version = "0.1.0"
+description = "Given the hierarchy of an abstract class, it detects the appropriate concrete subclass (deterministically) that satisfies certain attributes obtained as a parameter. Useful for implementing the Strategy design pattern."
+authors = ["Armando Ezequiel Puerta <armando.ezequiel.puerta@gmail.com>"]
+license = "MIT License"
+readme = "README.md"
+packages = [{include = "suitable_class_finder"}]
+include = [{ path = "smalltools_st" }]
+exclude = ["tests"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development"]
+homepage = "https://github.com/EzequielPuerta/suitable-class-finder"
+repository = "https://github.com/EzequielPuerta/suitable-class-finder"
+documentation = "https://github.com/EzequielPuerta/suitable-class-finder"
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+codecov = "^2.1.13"
+pytest-cov = "^4.1.0"
+pre-commit = "^3.6.0"
+flake8 = "^6.1.0"
+mypy = "^1.8.0"
+isort = "^5.13.2"
+black = {version = "^24.1a1", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/EzequielPuerta/suitable-class-finder/issues"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 79
+
+[tool.black]
+line-length = 79
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+
+[tool.mypy]
+follow_imports = "silent"
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
