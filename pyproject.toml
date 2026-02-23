@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "suitable-class-finder"
-version = "0.1.0"
+version = "0.1.1"
 description = "Given the hierarchy of an abstract class, it detects the appropriate concrete subclass (deterministically) that satisfies certain attributes obtained as a parameter. Useful for implementing the Strategy design pattern."
 authors = ["Armando Ezequiel Puerta <armando.ezequiel.puerta@gmail.com>"]
 license = "MIT License"
@@ -29,10 +29,8 @@ pytest = "^7.4.4"
 codecov = "^2.1.13"
 pytest-cov = "^4.1.0"
 pre-commit = "^3.6.0"
-flake8 = "^6.1.0"
 mypy = "^1.8.0"
-isort = "^5.13.2"
-black = {version = "^24.1a1", allow-prereleases = true}
+ruff = "^0.15.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -41,43 +39,57 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/EzequielPuerta/suitable-class-finder/issues"
 
-[tool.isort]
-profile = "black"
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-line_length = 79
+#############################################
+#                 RUFF
+#############################################
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+extend-exclude = []
 
-[tool.black]
-line-length = 79
-target-version = ['py38']
-include = '\.pyi?$'
-exclude = '''
+# Esto activa reglas equivalentes a flake8, isort, pyupgrade,
+# bugs típicos y mejores prácticas.
+lint.select = [
+    "E",   # errores estilo
+    "F",   # errores de flake8
+    "I",   # orden de imports (isort)
+    "B",   # bugbear
+    "UP",  # pyupgrade
+    "C4",  # comprehensions
+    "W",   # warnings
+]
 
-(
-  /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.hg
-    | \.mypy_cache
-    | \.tox
-    | \.venv
-    | _build
-    | buck-out
-    | build
-    | dist
-  )/
-  | foo.py           # also separately exclude a file named foo.py in
-                     # the root of the project
-)
-'''
+lint.ignore = [
+    "E203",  # compatibilidad con estilo Black
+    "E501",
+]
 
+#############################################
+#                 RUFF ISORT
+#############################################
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = ["core"]
+force-single-line = false
+
+#############################################
+#                 RUFF FORMAT
+#############################################
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+#############################################
+#                 MYPY
+#############################################
 [tool.mypy]
+strict = false
 follow_imports = "silent"
 strict_optional = true
 warn_redundant_casts = true
 warn_unused_ignores = true
+warn_return_any = true
 disallow_any_generics = true
 check_untyped_defs = true
 no_implicit_reexport = true

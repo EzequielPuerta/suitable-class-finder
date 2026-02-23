@@ -1,11 +1,14 @@
-from typing import List, Union
+from typing import Any, Generic, List, Type, TypeVar, Union
 
 
-def is_concrete(subclass: type) -> bool:
+T = TypeVar("T")
+
+
+def is_concrete(subclass: Type[T]) -> bool:
     return len(subclass.__subclasses__()) == 0
 
 
-def concrete_subclasses(a_class: type, accumulator: List[type]) -> List[type]:
+def concrete_subclasses(a_class: Type[T], accumulator: List[Type[T]]) -> List[Type[T]]:
     """For this package, concrete class is any with no subclasses.
 
     Parameters:
@@ -24,14 +27,14 @@ def concrete_subclasses(a_class: type, accumulator: List[type]) -> List[type]:
     return accumulator
 
 
-class SuitableClassFinder:
+class SuitableClassFinder(Generic[T]):
     """Given the hierarchy of an abstract class, it detects the appropriate
     concrete subclass (deterministically) that satisfies certain attributes
     obtained as a parameter.
     Useful for implementing the Strategy design pattern.
     """
 
-    def __init__(self, abstract_class: type) -> None:
+    def __init__(self, abstract_class: Type[T]) -> None:
         """Initialization of the subclass finder.
 
         Parameter:
@@ -40,12 +43,12 @@ class SuitableClassFinder:
         self.abstract_class = abstract_class
         super().__init__()
 
-    def suitable_for(  # type: ignore
+    def suitable_for(
         self,
-        *suitable_object,
-        default_subclass: Union[None, type] = None,
+        *suitable_object: Any,
+        default_subclass: Union[None, Type[T]] = None,
         suitable_method: str = "can_handle",
-    ) -> type:
+    ) -> Type[T]:
         """Finds the concrete subclass that satisfies the conditions modeled
         with the :suitable_object: and the :suitable_method:
 
