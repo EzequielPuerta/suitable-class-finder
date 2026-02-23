@@ -28,3 +28,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Typing fixes.
+
+## [0.1.3] - 2026-02-23
+
+### Fixed
+
+- Generic typing fixes.

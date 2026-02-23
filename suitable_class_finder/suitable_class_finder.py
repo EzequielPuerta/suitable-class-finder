@@ -1,7 +1,6 @@
 from typing import Any, Generic, TypeVar
 
 T = TypeVar("T")
-U = TypeVar("U")
 
 
 def is_concrete(subclass: type[T]) -> bool:
@@ -46,9 +45,9 @@ class SuitableClassFinder(Generic[T]):
     def suitable_for(
         self,
         *suitable_object: Any,
-        default_subclass: type[T] | type[U] | None = None,
+        default_subclass: type[T] | None = None,
         suitable_method: str = "can_handle",
-    ) -> type[T] | type[U]:
+    ) -> type[T]:
         """Finds the concrete subclass that satisfies the conditions modeled
         with the :suitable_object: and the :suitable_method:
 

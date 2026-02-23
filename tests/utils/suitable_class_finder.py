@@ -34,7 +34,7 @@ class Relative(ABC):  # noqa: B024
         return (cls.name == expected_name) and (cls.age == expected_age)
 
 
-class Nobody:
+class Nobody(Relative):
     name = "NN"
     age = None
 
