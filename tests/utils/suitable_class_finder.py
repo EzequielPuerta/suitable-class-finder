@@ -21,7 +21,7 @@ from abc import ABC
 # 				|_ Sister	{name: Jenny, age: 14}		X
 
 
-class Relative(ABC):
+class Relative(ABC):  # noqa: B024
     name = ""
     age = 0
 

@@ -1,14 +1,14 @@
-from typing import Any, Generic, List, Type, TypeVar, Union
-
+from typing import Any, Generic, TypeVar
 
 T = TypeVar("T")
+U = TypeVar("U")
 
 
-def is_concrete(subclass: Type[T]) -> bool:
+def is_concrete(subclass: type[T]) -> bool:
     return len(subclass.__subclasses__()) == 0
 
 
-def concrete_subclasses(a_class: Type[T], accumulator: List[Type[T]]) -> List[Type[T]]:
+def concrete_subclasses(a_class: type[T], accumulator: list[type[T]]) -> list[type[T]]:
     """For this package, concrete class is any with no subclasses.
 
     Parameters:
@@ -34,7 +34,7 @@ class SuitableClassFinder(Generic[T]):
     Useful for implementing the Strategy design pattern.
     """
 
-    def __init__(self, abstract_class: Type[T]) -> None:
+    def __init__(self, abstract_class: type[T]) -> None:
         """Initialization of the subclass finder.
 
         Parameter:
@@ -46,9 +46,9 @@ class SuitableClassFinder(Generic[T]):
     def suitable_for(
         self,
         *suitable_object: Any,
-        default_subclass: Union[None, Type[T]] = None,
+        default_subclass: type[T] | type[U] | None = None,
         suitable_method: str = "can_handle",
-    ) -> Type[T]:
+    ) -> type[T] | type[U]:
         """Finds the concrete subclass that satisfies the conditions modeled
         with the :suitable_object: and the :suitable_method:
 

@@ -32,19 +32,17 @@ def test_is_concrete():
 
 
 def test_concrete_subclasses():
-    assert set(concrete_subclasses(Grandfather, [])) == set(
-        (
-            Aunt,
-            Cousin,
-            Brother,
-            Sister,
-            Me,
-        )
-    )
+    assert set(concrete_subclasses(Grandfather, [])) == {
+        Aunt,
+        Cousin,
+        Brother,
+        Sister,
+        Me,
+    }
     assert set(concrete_subclasses(Aunt, [])) == set()
-    assert set(concrete_subclasses(Uncle, [])) == set((Cousin,))
+    assert set(concrete_subclasses(Uncle, [])) == {Cousin}
     assert set(concrete_subclasses(Cousin, [])) == set()
-    assert set(concrete_subclasses(Father, [])) == set((Brother, Sister, Me))
+    assert set(concrete_subclasses(Father, [])) == {Brother, Sister, Me}
     assert set(concrete_subclasses(Brother, [])) == set()
     assert set(concrete_subclasses(Sister, [])) == set()
     assert set(concrete_subclasses(Me, [])) == set()
