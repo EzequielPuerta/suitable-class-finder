@@ -34,3 +34,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 
 - Generic typing fixes.
+
+## [0.1.4] - 2026-02-23
+
+### Added
+
+- Added py.typed (PEP 561).
